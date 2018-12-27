@@ -27,7 +27,7 @@ ex_data exercise(ex_data, int);
 int main()
 {
 	int countdown = 3;
-	int choice = 1;
+	int choice;
 	char fpath1[] = "TK.txt";
 	char fpath2[] = "BI.txt";
 	printf("Hi\n Which exercise would you like to do?\n 1: Totale Kontraktion\n 2: Binnenspannung\n 0: Quit\n");
@@ -46,10 +46,13 @@ int main()
 			case 2:
 				binnenspannung(countdown, fpath2);
 				break;
+			case 100:
+				break;
 			default:
 				printf("Wrong input please try again\n");
 				break;
 		}
+		choice = 100;
 		printf("Would you like to go on?\n 1: Totale Kontraktion\n 2: Binnenspannung\n 0: Quit\n ");
 	}
 	return 0;
@@ -74,7 +77,7 @@ void binnenspannung(int count, char* fpath)
 bool write_data(char* fpath1, ex_data ex)
 {
 	FILE * file = fopen(fpath1, "a");
-	fprintf(file, "%d.%d.%d\t%d:%d\t%d\t%f\t%f\t%f\n", ex.day, ex.month, ex.year, ex.hour, ex.min, ex.time, ex.t_error, ex.ff, ex.ff_error);
+	fprintf(file, "%d.%d.%d\t%02d:%02d\t%d\t%f\t%f\t%f\n", ex.day, ex.month, ex.year, ex.hour, ex.min, ex.time, ex.t_error, ex.ff, ex.ff_error);
 	fclose(file);
 }
 
@@ -119,6 +122,14 @@ ex_data exercise(ex_data ex, int count)
 	printf("\nWie schätzt du den Fehler dieser Einschätzung ab? (auch zwischen 0 und 10)\n");
 	CLEARBUF();
 	scanf(" %lf", &ex.ff_error);
+	count = 10;
+	printf("Weiter geht es mit der zweiten Runde!");
+	while(count > 0)
+	{
+		printf("%d\n", count);
+		count--;
+		sleep(1);
+	}
     return ex;
 }
 
